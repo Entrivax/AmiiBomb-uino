@@ -847,6 +847,15 @@ namespace AmiiBomb
             Form.ShowDialog();
         }
 
+        private void restoreTagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Flash_Form Form = new Flash_Form();
+            Form.Current_File_Bin = Path.Combine(Current_Folder, listView1.SelectedItems[0].Text.Trim());
+            Form.Action_Write = true;
+            Form.Action_Restore = true;
+            Form.ShowDialog();
+        }
+
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             Current_Folder = Config.Bin_Folder_Path + e.Node.FullPath.Substring(1);

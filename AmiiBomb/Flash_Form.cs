@@ -10,7 +10,7 @@ namespace AmiiBomb
         Arduino_Class Arduino;
         public string Current_File_Bin = "";
         public string Bin_Folder = "";
-        public bool Action_Write, Com_Loaded = false;
+        public bool Action_Write, Com_Loaded = false, Action_Restore = false;
         private I18n i18n = I18n.Instance;
         public Flash_Form()
         {
@@ -41,8 +41,14 @@ namespace AmiiBomb
                 this.Close();
             }
 
-            if (Action_Write) button2.Text = i18n.__("NFC_Create_Amiibo_Tag");
-            if (!Action_Write) checkBox1.Visible = false;
+            if (Action_Write)
+            {
+                if (!Action_Restore)
+                    button2.Text = i18n.__("NFC_Create_Amiibo_Tag");
+                else
+                    button2.Text = i18n.__("NFC_Restore_Amiibo_Tag");
+            }
+            if (!Action_Write || Action_Restore) checkBox1.Visible = false;
         }
 
         private bool NTAG_isHere()
@@ -73,7 +79,7 @@ namespace AmiiBomb
             {
                 toolStripStatusLabel1.Text = i18n.__("NFC_Connected");
                 string DeviceNFC = i18n.__("NFC_NTAG215");
-                if (!Action_Write) DeviceNFC = i18n.__("NFC_Amiibo_NTAG215");
+                if (!Action_Write || Action_Restore) DeviceNFC = i18n.__("NFC_Amiibo_NTAG215");
 
                 MessageBox.Show(i18n.__("NFC_Put_NTAG1", DeviceNFC) + Environment.NewLine + i18n.__("NFC_Put_NTAG2"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -95,15 +101,23 @@ namespace AmiiBomb
                         byte[] Amiibo_Data = Amiibo_Class.Patch(File.ReadAllBytes(Current_File_Bin), NTAG_Long_UID);
                         textBox1.AppendText("\"" + Current_File_Bin + "\" " + i18n.__("NFC_Patched") + Environment.NewLine);
 
-                        if(checkBox1.Checked) Arduino.SendCommand("/WRITE_AMIIBO 1");
-                        else Arduino.SendCommand("/WRITE_AMIIBO 0");
+                        if (!Action_Restore)
+                        {
+                            if (checkBox1.Checked) Arduino.SendCommand("/WRITE_AMIIBO 1");
+                            else Arduino.SendCommand("/WRITE_AMIIBO 2");
+                        }
+                        else
+                        {
+                            Arduino.SendCommand("/RESTORE_AMIIBO");
+                        }
 
                         string Result = Arduino.SendCommand(Amiibo_Data);
                         textBox1.AppendText("\"" + Current_File_Bin + "\" " + i18n.__("NFC_Send") + Environment.NewLine + Environment.NewLine);
 
-                        if (Result.Split('/', ' ')[1] == "ERROR")
+                        var splitResult = Result.Split('/', ' ');
+                        if (splitResult.Length > 1 && splitResult[1] == "ERROR")
                             textBox1.AppendText(i18n.__("NFC_Error") + " " + Result.Substring(1) + Environment.NewLine);
-                        else if (Result.Split('/', ' ')[1] == "END_WRITE")
+                        else if (splitResult.Length > 1 && Result.Split('/', ' ')[1] == "END_WRITE")
                             textBox1.AppendText(i18n.__("NFC_Amiibo_Ready") + Environment.NewLine);
                         else
                             textBox1.AppendText(i18n.__("NFC_Unknown_Response") + " " + Result + Environment.NewLine);

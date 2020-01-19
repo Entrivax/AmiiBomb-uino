@@ -96,6 +96,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.restoreTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -121,6 +122,7 @@
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(343, 199);
@@ -292,27 +294,27 @@
             this.registerAmiiboKeyToolStripMenuItem});
             this.keyToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.key;
             this.keyToolStripMenuItem.Name = "keyToolStripMenuItem";
-            this.keyToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.keyToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.keyToolStripMenuItem.Text = "Keys";
             // 
             // selectKeybinFileToolStripMenuItem
             // 
             this.selectKeybinFileToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.key_add;
             this.selectKeybinFileToolStripMenuItem.Name = "selectKeybinFileToolStripMenuItem";
-            this.selectKeybinFileToolStripMenuItem.Size = new System.Drawing.Size(300, 22);
+            this.selectKeybinFileToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
             this.selectKeybinFileToolStripMenuItem.Text = "Select Amiibo Keys file";
             this.selectKeybinFileToolStripMenuItem.Click += new System.EventHandler(this.selectKeybinFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(297, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(298, 6);
             // 
             // whereFindAmiiboKeyToolStripMenuItem
             // 
             this.whereFindAmiiboKeyToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.service_status;
             this.whereFindAmiiboKeyToolStripMenuItem.Name = "whereFindAmiiboKeyToolStripMenuItem";
-            this.whereFindAmiiboKeyToolStripMenuItem.Size = new System.Drawing.Size(300, 22);
+            this.whereFindAmiiboKeyToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
             this.whereFindAmiiboKeyToolStripMenuItem.Text = "Where find Amiibo Keys?";
             this.whereFindAmiiboKeyToolStripMenuItem.Click += new System.EventHandler(this.whereFindAmiiboKeyToolStripMenuItem_Click);
             // 
@@ -321,7 +323,7 @@
             this.registerAmiiboKeyToolStripMenuItem.Checked = true;
             this.registerAmiiboKeyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.registerAmiiboKeyToolStripMenuItem.Name = "registerAmiiboKeyToolStripMenuItem";
-            this.registerAmiiboKeyToolStripMenuItem.Size = new System.Drawing.Size(300, 22);
+            this.registerAmiiboKeyToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
             this.registerAmiiboKeyToolStripMenuItem.Text = "Check Amiibo Keys Hex Chars in Clipboard";
             this.registerAmiiboKeyToolStripMenuItem.Click += new System.EventHandler(this.registerAmiiboKeyToolStripMenuItem_Click);
             // 
@@ -332,7 +334,7 @@
             this.deleteCacheToolStripMenuItem});
             this.filesCacheToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.script;
             this.filesCacheToolStripMenuItem.Name = "filesCacheToolStripMenuItem";
-            this.filesCacheToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.filesCacheToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.filesCacheToolStripMenuItem.Text = "Files Cache";
             // 
             // activeFilesCachingToolStripMenuItem
@@ -360,7 +362,7 @@
             this.amiiboAPIToolStripMenuItem});
             this.websiteInformationsToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.layout_content;
             this.websiteInformationsToolStripMenuItem.Name = "websiteInformationsToolStripMenuItem";
-            this.websiteInformationsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.websiteInformationsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.websiteInformationsToolStripMenuItem.Text = "Amiibo Databases";
             // 
             // amiibolifeToolStripMenuItem
@@ -382,27 +384,27 @@
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(169, 6);
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.magnifier;
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
             this.searchToolStripMenuItem.ShortcutKeyDisplayString = "CTRL + F";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.searchToolStripMenuItem.Text = "Search...";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(169, 6);
             // 
             // languagesToolStripMenuItem
             // 
             this.languagesToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.world;
             this.languagesToolStripMenuItem.Name = "languagesToolStripMenuItem";
-            this.languagesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.languagesToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.languagesToolStripMenuItem.Text = "Languages";
             // 
             // amiiboToolStripMenuItem
@@ -482,6 +484,7 @@
             this.spoofRandomIDToolStripMenuItem,
             this.toolStripSeparator10,
             this.createTagToolStripMenuItem,
+            this.restoreTagToolStripMenuItem,
             this.toolStripSeparator4,
             this.dumpAppDataToolStripMenuItem,
             this.writeAppDataToolStripMenuItem,
@@ -495,7 +498,7 @@
             // 
             this.decryptToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.lock_edit;
             this.decryptToolStripMenuItem.Name = "decryptToolStripMenuItem";
-            this.decryptToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.decryptToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.decryptToolStripMenuItem.Text = "Decrypt";
             this.decryptToolStripMenuItem.Click += new System.EventHandler(this.decryptToolStripMenuItem_Click);
             // 
@@ -503,34 +506,34 @@
             // 
             this.spoofRandomIDToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.layers;
             this.spoofRandomIDToolStripMenuItem.Name = "spoofRandomIDToolStripMenuItem";
-            this.spoofRandomIDToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.spoofRandomIDToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.spoofRandomIDToolStripMenuItem.Text = "Spoof Random ID";
             this.spoofRandomIDToolStripMenuItem.Click += new System.EventHandler(this.spoofRandomIDToolStripMenuItem_Click);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(182, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(181, 6);
             // 
             // createTagToolStripMenuItem
             // 
             this.createTagToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.tag_blue_add;
             this.createTagToolStripMenuItem.Name = "createTagToolStripMenuItem";
             this.createTagToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.createTagToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.createTagToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.createTagToolStripMenuItem.Text = "Create NTAG";
             this.createTagToolStripMenuItem.Click += new System.EventHandler(this.createTagToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(182, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(181, 6);
             // 
             // dumpAppDataToolStripMenuItem
             // 
             this.dumpAppDataToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.application_side_contract;
             this.dumpAppDataToolStripMenuItem.Name = "dumpAppDataToolStripMenuItem";
-            this.dumpAppDataToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.dumpAppDataToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.dumpAppDataToolStripMenuItem.Text = "Dump AppData";
             this.dumpAppDataToolStripMenuItem.Click += new System.EventHandler(this.dumpAppDataToolStripMenuItem_Click);
             // 
@@ -538,7 +541,7 @@
             // 
             this.writeAppDataToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.application_side_expand;
             this.writeAppDataToolStripMenuItem.Name = "writeAppDataToolStripMenuItem";
-            this.writeAppDataToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.writeAppDataToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.writeAppDataToolStripMenuItem.Text = "Write AppData";
             this.writeAppDataToolStripMenuItem.Click += new System.EventHandler(this.writeAppDataToolStripMenuItem_Click);
             // 
@@ -546,7 +549,7 @@
             // 
             this.appDataEditorToolStripMenuItem.Image = global::AmiiBomb.Properties.Resources.page_edit;
             this.appDataEditorToolStripMenuItem.Name = "appDataEditorToolStripMenuItem";
-            this.appDataEditorToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.appDataEditorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.appDataEditorToolStripMenuItem.Text = "AppData Editor";
             this.appDataEditorToolStripMenuItem.Click += new System.EventHandler(this.appDataEditorToolStripMenuItem_Click);
             // 
@@ -719,6 +722,13 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
+            // restoreTagToolStripMenuItem
+            // 
+            this.restoreTagToolStripMenuItem.Name = "restoreTagToolStripMenuItem";
+            this.restoreTagToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.restoreTagToolStripMenuItem.Text = "Restore NTAG";
+            this.restoreTagToolStripMenuItem.Click += new System.EventHandler(this.restoreTagToolStripMenuItem_Click);
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -826,6 +836,7 @@
         public System.Windows.Forms.ToolStripMenuItem appDataEditorToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem amiiBombuinoToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem powerSavesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem restoreTagToolStripMenuItem;
     }
 }
 
