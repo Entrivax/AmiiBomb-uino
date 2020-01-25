@@ -62,6 +62,11 @@ void setup()
         server.on("/GET_NTAG_UID", HTTP_GET, handleNtagUid);
         server.on("/NTAG_HALT", HTTP_GET, handleHalt);
         server.on("/READ_AMIIBO", HTTP_GET, handleRead);
+        server.on("/WRITE_AMIIBO", HTTP_POST,                 // if the client posts to the upload page
+            [](){
+              server.send(200); },                          // Send status 200 (OK) to tell the client we are ready to receive
+            handleWriteUpload                                 // Receive and save the file
+        );
         server.onNotFound(handleNotFound);
         server.begin();
     }
@@ -125,6 +130,70 @@ void handleRestoreUpload() {
           {
               server.send(500, "text/plain", "DATA_PAGE" + String(page) + "_" + mfrc522.GetStatusCodeName(status));
               break;
+          }
+      }
+  
+      if (status == MFRC522::STATUS_OK)
+      {
+          server.send(200);
+      } else {
+          server.send(500, "text/plain", "DATA_END_" + String(mfrc522.GetStatusCodeName(status)));
+      }
+  }
+}
+
+void handleWriteUpload() {
+  HTTPUpload& upload = server.upload();
+  if(upload.status == UPLOAD_FILE_START){
+      server.sendHeader("Access-Control-Allow-Origin", "*");
+      amiiboUploadIndex = 0;
+      for (short i = 0; i < 0x21C; i++) {
+          amiiboUploadBuffer[i] = 0;
+      }
+  } else if(upload.status == UPLOAD_FILE_WRITE){
+      for (short i = 0; i < upload.currentSize; i++) {
+          amiiboUploadBuffer[i + amiiboUploadIndex] = upload.buf[i];
+      }
+      amiiboUploadIndex += upload.currentSize;
+  } else if(upload.status == UPLOAD_FILE_END){
+  
+      MFRC522::StatusCode status;
+  
+      // Write Data
+      for (byte page = 3; page < 135; page++)
+      {
+          status = (MFRC522::StatusCode)mfrc522.MIFARE_Ultralight_Write(page, amiiboUploadBuffer + (page * 4), 4);
+          if (status != MFRC522::STATUS_OK)
+          {
+              server.send(500, "text/plain", "DATA_PAGE" + String(page) + "_" + mfrc522.GetStatusCodeName(status));
+              return;
+          }
+      }
+      if (status == MFRC522::STATUS_OK)
+      {
+          // Write Dynamic Lock Bytes
+          byte Dynamic_Lock_Bytes[] = {0x01, 0x00, 0x0F, 0xBD};
+          status = (MFRC522::StatusCode)mfrc522.MIFARE_Ultralight_Write(130, Dynamic_Lock_Bytes, 4);
+          if (status != MFRC522::STATUS_OK)
+          {
+              Serial.print(Begin_of_Message);
+              Serial.print("/ERROR DynLock: ");
+              Serial.print(mfrc522.GetStatusCodeName(status));
+              Serial.print(End_of_Message);
+          }
+      }
+
+      if (status == MFRC522::STATUS_OK)
+      {
+          // Write Static Lock Bytes
+          byte Static_Lock_Bytes[] = {0x0F, 0xE0, 0x0F, 0xE0};
+          status = (MFRC522::StatusCode)mfrc522.MIFARE_Ultralight_Write(2, Static_Lock_Bytes, 4);
+          if (status != MFRC522::STATUS_OK)
+          {
+              Serial.print(Begin_of_Message);
+              Serial.print("/ERROR StaticLock: ");
+              Serial.print(mfrc522.GetStatusCodeName(status));
+              Serial.print(End_of_Message);
           }
       }
   
